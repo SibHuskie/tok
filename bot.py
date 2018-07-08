@@ -116,12 +116,12 @@ async def kiss(ctx, user: discord.Member = None):
     
 # }cry
 @client.command(pass_context=True)
-async def cry(ctx):
+async def cry(ctx, user: discord.Member = None):
     author = ctx.message.author
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     msg.set_image(url="{}".format(random.choice(crylinks)))
-    msg.add_field(name=":tongue: Emotes :tongue:", value="`{} is crying! *Pat pat pat*`".format(user.id, author.id))
+    msg.add_field(name=":handshake: Interactions", value="{} is crying! Poor thing...".format(user.id, author.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
