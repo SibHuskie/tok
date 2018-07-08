@@ -48,6 +48,22 @@ huglinks = ["https://i.imgur.com/yE2RnXK.gif",
             "https://i.imgur.com/br3bGQc.gif",
             "https://i.imgur.com/IcNGAQD.gif"]
 
+kisslinks = ["https://i.imgur.com/0Ri9sfq.gif",
+             "https://i.imgur.com/EMdpmXW.gif",
+             "https://i.imgur.com/Y9iLoiv.gif",
+             "https://i.imgur.com/ZlqZy8S.gif",
+             "https://i.imgur.com/ySav1IQ.gif",
+             "https://i.imgur.com/ZGfrn2d.gif",
+             "https://i.imgur.com/glwWeUl.gif",
+             "https://i.imgur.com/j5hDl7V.gif",
+             "https://i.imgur.com/w7mVYty.gif",
+             "https://i.imgur.com/FJ5bckO.gif",
+             "https://i.imgur.com/KqVmVU7.gif",
+             "https://i.imgur.com/EM1C9a6.gif",
+             "https://i.imgur.com/TACVpH9.gif",
+             "https://i.imgur.com/opiHLtc.gif",
+             "https://i.imgur.com/LylJAea.gif"]
+
 # ~lick <user>
 @client.command(pass_context=True)
 async def lick(ctx, user: discord.Member = None):
@@ -59,10 +75,10 @@ async def lick(ctx, user: discord.Member = None):
         msg.add_field(name=error_img, value="Please mention someone you want to lick.")
     else:
         msg.set_image(url="{}".format(random.choice(licklinks)))
-        msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
     await client.say(embed=msg)
     
-# }hug <user>
+# ~hug <user>
 @client.command(pass_context=True)
 async def hug(ctx, user: discord.Member = None):
     author = ctx.message.author
@@ -73,6 +89,21 @@ async def hug(ctx, user: discord.Member = None):
         msg.add_field(name=error_img, value="Please mention someone you want to hug.")
     else:
         msg.set_image(url="{}".format(random.choice(huglinks)))
-        msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> got a hug from <@{}>! How cute.".format(user.id, author.id))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> got a hug from <@{}>! How cute.".format(user.id, author.id))
+    await client.say(embed=msg)
+    
+# }kiss <user>
+@client.command(pass_context=True)
+async def kiss(ctx, user: discord.Member = None):
+    author = ctx.message.author
+
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if user == None:
+        msg.add_field(name=error_img, value="Please mention someone you want to kiss.")
+    else:
+        msg.set_image(url="{}".format(random.choice(kisslinks)))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> got a kiss from <@{}>! owo what's this?".format(user.id, author.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
