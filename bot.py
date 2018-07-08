@@ -72,6 +72,12 @@ crylinks = ["https://media1.giphy.com/media/ROF8OQvDmxytW/giphy-downsized.gif",
             "https://media1.tenor.com/images/5912cbe4bc0dec511b5e0996a2ad9b6f/tenor.gif?itemid=8620704",
             "https://s9.favim.com/orig/131225/an-anime-anime-gif-anime-guy-Favim.com-1182388.gif"]
 
+punchlinks = ["https://i.imgur.com/T2HdIv8.gif",
+              "https://i.imgur.com/LZz65rg.gif",
+              "https://i.imgur.com/FqPBIf3.gif",
+              "https://i.imgur.com/KmqPDQG.gif",
+              "https://i.imgur.com/yEx4aKu.gif"]
+
 # ~lick <user>
 @client.command(pass_context=True)
 async def lick(ctx, user: discord.Member = None):
@@ -123,5 +129,19 @@ async def cry(ctx):
     msg.set_footer(text=footer_text)
     msg.set_image(url="{}".format(random.choice(crylinks)))
     msg.add_field(name=":handshake: Interactions", value="<@{}> is crying! Poor thing...".format(author.id))
+    await client.say(embed=msg)
+    
+# }punch <user>
+@client.command(pass_context=True)
+async def punch(ctx, user: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if user == None:
+        msg.add_field(name=error_img, value="Please mention someone you want to punch.")
+    else:
+        msg.set_image(url="{}".format(random.choice(punchlinks)))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> got punched by <@{}>! Wow, calm down.".format(user.id, author.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
