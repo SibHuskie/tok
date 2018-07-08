@@ -100,7 +100,7 @@ async def hug(ctx, user: discord.Member = None):
         msg.add_field(name=":handshake: Interactions", value="<@{}> got a hug from <@{}>! How cute.".format(user.id, author.id))
     await client.say(embed=msg)
     
-# }kiss <user>
+# ~kiss <user>
 @client.command(pass_context=True)
 async def kiss(ctx, user: discord.Member = None):
     author = ctx.message.author
@@ -114,9 +114,9 @@ async def kiss(ctx, user: discord.Member = None):
         msg.add_field(name=":handshake: Interactions", value="<@{}> got a kiss from <@{}>! owo what's this?".format(user.id, author.id))
     await client.say(embed=msg)
 
-# }facepalm
+# ~cry
 @client.command(pass_context=True)
-async def facepalm(ctx):
+async def cry(ctx):
     author = ctx.message.author
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
