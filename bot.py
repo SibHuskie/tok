@@ -73,6 +73,6 @@ async def hug(ctx, user: discord.Member = None):
         msg.add_field(name=error_img, value="Please mention someone you want to hug.")
     else:
         msg.set_image(url="{}".format(random.choice(huglinks)))
-        msg.add_field(name=":handshake: Interactions", value="<@{}> got a hug from <@{}>! How cute.".format(user.id, author.id))
+        msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> got a hug from <@{}>! How cute.".format(user.id, author.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
