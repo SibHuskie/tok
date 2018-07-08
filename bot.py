@@ -78,6 +78,20 @@ punchlinks = ["https://i.imgur.com/T2HdIv8.gif",
               "https://i.imgur.com/KmqPDQG.gif",
               "https://i.imgur.com/yEx4aKu.gif"]
 
+spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
+              "https://i.imgur.com/ZsTbDvh.gif",
+              "https://i.imgur.com/4LHwG60.gif",
+              "https://i.imgur.com/xLOoHKP.gif",
+              "https://i.imgur.com/UShywVv.gif",
+              "https://i.imgur.com/RE3mnrA.gif"]
+
+cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
+               "https://i.imgur.com/i3Eqqgz.gif",
+               "https://i.imgur.com/GpFk6fE.gif",
+               "https://i.imgur.com/mc3Z7wf.gif",
+               "https://i.imgur.com/N5JYB5r.gif",
+               "https://i.imgur.com/PGp8JYq.gif"]
+
 # ~lick <user>
 @client.command(pass_context=True)
 async def lick(ctx, user: discord.Member = None):
@@ -131,7 +145,7 @@ async def cry(ctx):
     msg.add_field(name=":handshake: Interactions", value="<@{}> is crying! Poor thing...".format(author.id))
     await client.say(embed=msg)
     
-# }punch <user>
+# ~punch <user>
 @client.command(pass_context=True)
 async def punch(ctx, user: discord.Member = None):
     author = ctx.message.author
@@ -143,5 +157,33 @@ async def punch(ctx, user: discord.Member = None):
     else:
         msg.set_image(url="{}".format(random.choice(punchlinks)))
         msg.add_field(name=":handshake: Interactions", value="<@{}> got punched by <@{}>! Wow, calm down.".format(user.id, author.id))
+    await client.say(embed=msg)
+    
+# ~spank <user>
+@client.command(pass_context=True)
+async def spank(ctx, user: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if user == None:
+        msg.add_field(name=error_img, value="Please mention someone you want to spank.")
+    else:
+        msg.set_image(url="{}".format(random.choice(spanklinks)))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> got spanked by <@{}>! Get a room ...".format(user.id, author.id))
+    await client.say(embed=msg)
+    
+# ~cuddle <user>
+@client.command(pass_context=True)
+async def cuddle(ctx, user: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if user == None:
+        msg.add_field(name=error_img, value="Please mention someone you want to cuddle.")
+    else:
+        msg.set_image(url="{}".format(random.choice(cuddlelinks)))
+        msg.add_field(name=":handshake: Interactions", value="<@{}> cuddled <@{}>! Aww.".format(author.id, user.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
