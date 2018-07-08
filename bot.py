@@ -21,6 +21,7 @@ admin_role = '465479205963038731'
 mod_role = '465479218269257729'
 punished_role = '465479862166224896'
 release_date = '9th of July, 2018'
+banner = 'https://gph.is/2NfJtGd'
 
 @client.event
 async def on_ready():
