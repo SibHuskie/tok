@@ -23,6 +23,7 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name='on Saviors™'))
     
 #EMOTES
+
 licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
              "https://i.imgur.com/ObCPKYV.gif",
              "https://i.imgur.com/7fWrYqd.gif",
@@ -42,8 +43,6 @@ async def lick(ctx, user: discord.Member = None):
             msg.add_field(name=error_img, value="Please mention someone you want to lick.")
         else:
             msg.set_image(url="{}".format(random.choice(licklinks)))
-            msg.add_field(name=":weary: __**e :weary:", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
-    else:
-        msg.add_field(name=error_img, value="This command can only be used by VIPs and Legends.")
+            msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
