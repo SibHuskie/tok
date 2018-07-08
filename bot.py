@@ -122,6 +122,6 @@ async def cry(ctx):
     msg.title = ""
     msg.set_footer(text=footer_text)
     msg.set_image(url="{}".format(random.choice(crylinks)))
-    msg.add_field(name=":handshake: Interactions", value="{} is crying! Poor thing...".format(author.id))
+    msg.add_field(name=":handshake: Interactions", value="<@{}> is crying! Poor thing...".format(author.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
