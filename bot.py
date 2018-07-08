@@ -11,7 +11,7 @@ import json
 import urbandictionary as ud
 
 client = commands.Bot(command_prefix="~")
-footer_text = "Saviours™"
+footer_text = "Saviors™"
 error_img = ':warning:'
 
 @client.event
@@ -20,5 +20,5 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print("---------------")
-    await client.change_presence(game=discord.Game(name='on Saviours™'))
+    await client.change_presence(game=discord.Game(name='on Saviors™'))
 client.run(os.environ['BOT_TOKEN'])
