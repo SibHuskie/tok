@@ -20,6 +20,7 @@ manager_role = '465479196102230027'
 admin_role = '465479205963038731'
 mod_role = '465479218269257729'
 punished_role = '465479862166224896'
+release_date = '9th of July, 2018'
 
 @client.event
 async def on_ready():
@@ -344,5 +345,25 @@ async def userinfo(ctx, userName: discord.Member = None):
             msg.add_field(name="PUNISHED:", value="True", inline=True)
         else:
             msg.add_field(name="PUNISHED:", value="False", inline=True)
+    await client.say(embed=msg)
+    
+# }serverinfo
+@client.command(pass_context=True)
+async def serverinfo(ctx):
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ":page_with_curl: SERVER INFORMATION"
+    msg.set_footer(text=footer_text)
+    imageurl = ctx.message.server.icon_url
+    msg.set_thumbnail(url=imageurl)
+    msg.add_field(name="MEMBERS", value="`{}`".format(len(ctx.message.server.members)), inline=True)
+    msg.add_field(name="CHANNELS", value="`{}`".format(len(ctx.message.server.channels)), inline=True)
+    msg.add_field(name="EMOJIS", value="`{}`".format(len(ctx.message.server.emojis)), inline=True)
+    msg.add_field(name="ID", value="`{}`".format(ctx.message.server.id), inline=True)
+    msg.add_field(name="REGION", value="`{}`".format(ctx.message.server.region), inline=True)
+    msg.add_field(name="ROLES", value="`{}`".format(len(ctx.message.server.roles)), inline=True)
+    msg.add_field(name="OWNER", value="`{}`".format(ctx.message.server.owner), inline=True)
+    msg.add_field(name="CREATED AT", value="`{}`".format(ctx.message.server.created_at), inline=True)
+    msg.add_field(name="RELEASE DATE:", value="`{}`".format(release_date), inline=True)
+    msg.set_image(url="{}".format(banner))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
