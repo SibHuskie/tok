@@ -189,7 +189,7 @@ async def cuddle(ctx, user: discord.Member = None):
     
 #                                                       EVERYONE
 
-# }kill <user>
+# ~kill <user>
 @client.command(pass_context=True)
 async def kill(ctx, user: discord.Member = None):
     author = ctx.message.author
@@ -269,5 +269,35 @@ async def kill(ctx, user: discord.Member = None):
                 "<@{}> found their butthole and died from excitement.".format(user.id),
                 "<@{}> died. That's it. They just died.".format(user.id)]
         msg.add_field(name=":newspaper2: ", value="{}".format(random.choice(msgs)))
+    await client.say(embed=msg)
+    
+# ~suggest <suggestion>
+@client.command(pass_context=True)
+async def suggest(ctx, *, args = None):
+    author = ctx.message.author
+    channel = client.get_channel('463857809138778113')
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name=error_img, value="Please give a suggestion.\nExample: `~suggest Create a role called 'Weeb'.`.")
+    else:
+        if len(str(args)) > 500:
+            msg.add_field(name=error_img, value="The suggestion cannot be longer than 500 characters.")
+        else:
+            m = discord.Embed(colour=0x84b5ed, description= "")
+            m.title = ""
+            m.set_footer(text=footer_text)
+            m.add_field(name=":speech_balloon: ", value="{}".format(args))
+            m.add_field(name="===============", value="Suggested by: `{}` ### `{}`\nIf you like this suggestion, react with :white_check_mark: and if you don't like it, react with :x:.".format(author, author.id))
+            await client.send_message(channel, embed=m)
+            async for message in client.logs_from(channel):
+                if len(message.reactions) == 0:
+                    await client.add_reaction(message, '\u2705')
+                    await client.add_reaction(message, '\u274C')
+                    break
+                else:
+                    print("")
+            msg.add_field(name=":speech_balloon: ", value="Suggestion sent!\nYou can see it in <#463857809138778113>.")
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
