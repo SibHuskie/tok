@@ -305,7 +305,7 @@ async def suggest(ctx, *, args = None):
 # }invite
 @client.command(pass_context=True)
 async def invite(ctx):
-    msg = discord.Embed(colour=463857809138778113, url=default_invite, description= "")
+    msg = discord.Embed(colour=0x84b5ed, url=default_invite, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     msg.add_field(name=":link: ", value="Here is the default server invite:\n{}".format(default_invite))
