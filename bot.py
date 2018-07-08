@@ -39,10 +39,10 @@ async def lick(ctx, user: discord.Member = None):
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
-        if user == None:
-            msg.add_field(name=error_img, value="Please mention someone you want to lick.")
-        else:
-            msg.set_image(url="{}".format(random.choice(licklinks)))
-            msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
+    if user == None:
+        msg.add_field(name=error_img, value="Please mention someone you want to lick.")
+    else:
+        msg.set_image(url="{}".format(random.choice(licklinks)))
+        msg.add_field(name=":weary: __**Emotes**__ :weary:", value="<@{}> licked <@{}>! I'm not sure what to think of this, you weirdos.".format(author.id, user.id))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
