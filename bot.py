@@ -415,7 +415,7 @@ async def rate(ctx, *, args = None):
     
 # ~dicklength
 @client.command(pass_context=True)
-async def dicklength(ctx):
+async def penislength(ctx):
     author = ctx.message.author
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
