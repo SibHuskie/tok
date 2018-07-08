@@ -14,6 +14,12 @@ client = commands.Bot(command_prefix="~")
 footer_text = "Saviors™"
 error_img = ':warning:'
 default_invite = 'https://discord.gg/5hXms6M'
+member_role = '465479590056296449'
+owner_role = '465479184043606036'
+manager_role = '465479196102230027'
+admin_role = '465479205963038731'
+mod_role = '465479218269257729'
+punished_role = '465479862166224896'
 
 @client.event
 async def on_ready():
