@@ -13,6 +13,7 @@ import urbandictionary as ud
 client = commands.Bot(command_prefix="~")
 footer_text = "Saviors™"
 error_img = ':warning:'
+default_invite = 'https://discord.gg/5hXms6M'
 
 @client.event
 async def on_ready():
@@ -299,5 +300,14 @@ async def suggest(ctx, *, args = None):
                 else:
                     print("")
             msg.add_field(name=":speech_balloon: ", value="Suggestion sent!\nYou can see it in <#463857809138778113>.")
+    await client.say(embed=msg)
+    
+# }invite
+@client.command(pass_context=True)
+async def invite(ctx):
+    msg = discord.Embed(colour=463857809138778113, url=default_invite, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    msg.add_field(name=":link: ", value="Here is the default server invite:\n{}".format(default_invite))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
