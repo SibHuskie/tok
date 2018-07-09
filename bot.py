@@ -46,7 +46,7 @@ async def on_member_join(userName: discord.User):
     m2 += "\n:small_orange_diamond: If you are here to partner with the server, please DM a Partnership Manager, if there are none online DM a helper / moderator instead of the managers and owners."
     m2 += "\n:small_blue_diamond: Thanks for joining!"
     server = client.get_server('463178197228584981')
-    await client.send_message(client.get_channel("463178197228584983"), "Welcome to **Saviors™**, <@{}>! We hope you enjoy your stay. We now have have {} members.".format(userName.id, len(server.members)))
+    await client.send_message(client.get_channel("463178197228584983"), "Welcome to **Saviors™**, {}! We hope you enjoy your stay. We now have have {} members.".format(userName, len(server.members)))
     try:
         await client.send_message(userName, "{}".format(m2))
     except:
