@@ -660,7 +660,7 @@ async def ban(ctx, user: discord.Member = None, *, args = None):
     admin = discord.utils.get(ctx.message.server.roles, name='Admin')
     manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
     owner = discord.utils.get(ctx.message.server.roles, name='Owner')
-    msg = discord.Embed(colour=0xC30000, description= "")
+    msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles:
@@ -693,5 +693,41 @@ async def ban(ctx, user: discord.Member = None, *, args = None):
                         await client.send_message(chnl, m)
     else:
         msg.add_field(name=error_img, value="This command can only be used by Moderators, Administrators, Co-Owners and Owners.")
+    await client.say(embed=msg)
+    
+# }unban <user id>
+@client.command(pass_context=True)
+async def unban(ctx, userID = None):
+    author = ctx.message.author
+    member = discord.utils.get(ctx.message.server.roles, name ='Members')
+    punished = discord.utils.get(ctx.message.server.roles, name='Muted')
+    helper = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if owner in author.roles or admin in author.roles or manager in author.roles:
+        if userID == None:
+            msg.add_field(name=error_img, value="No user ID given.\nExample: `~unban 299761993382887425`.")
+        else:
+            banned_users = await client.get_bans(ctx.message.server)
+            try:
+                user = discord.utils.get(banned_users,id=userID)
+                await client.unban(ctx.message.server, user)
+                msg.add_field(name=":tools: ", value="<@{}> unbanned **{}** ( `{}` ).".format(author.id, user, userID))
+                m = "```diff"
+                m += "\n- UNBAN -"
+                m += "\n+ Author: {} ### {}".format(author, author.id)
+                m += "\n+ Target: {} ### {}".format(user, user.id)
+                m += "\n```"
+                chnl = client.get_channel('453219479963303936')
+                await client.send_message(chnl, m)
+            except:
+                msg.add_field(name=error_img, value="There was an error while trying to unban that ID.\nEither the ID you specified doesn't exist or it isn't banned.")
+    else:
+        msg.add_field(name=error_img, value="This command can only be used by Administrators, Co-Owners and Owners.")
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
