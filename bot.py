@@ -85,11 +85,9 @@ crylinks = ["https://media1.giphy.com/media/ROF8OQvDmxytW/giphy-downsized.gif",
             "https://media1.tenor.com/images/5912cbe4bc0dec511b5e0996a2ad9b6f/tenor.gif?itemid=8620704",
             "https://s9.favim.com/orig/131225/an-anime-anime-gif-anime-guy-Favim.com-1182388.gif"]
 
-punchlinks = ["https://i.imgur.com/T2HdIv8.gif",
-              "https://i.imgur.com/LZz65rg.gif",
-              "https://i.imgur.com/FqPBIf3.gif",
-              "https://i.imgur.com/KmqPDQG.gif",
-              "https://i.imgur.com/yEx4aKu.gif"]
+punchlinks = ["http://www.reactiongifs.com/wp-content/uploads/2013/01/Superhero-Punch.gif",
+              "http://78.media.tumblr.com/41ef6b8df3b90fcd28f9b4c0d0a72973/tumblr_mgle63eSBS1s31xf3o1_400.gif",
+              "https://media.giphy.com/media/12eUd8OxABjQvS/giphy.gif"]
 
 spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
               "https://i.imgur.com/ZsTbDvh.gif",
