@@ -730,4 +730,38 @@ async def unban(ctx, userID = None):
     else:
         msg.add_field(name=error_img, value="This command can only be used by Administrators, Co-Owners and Owners.")
     await client.say(embed=msg)
+    
+# ~hackban <id> <reason>
+@client.command(pass_context=True)
+async def hackban(ctx, target = None, *, args = None):
+    author = ctx.message.author
+    server = ctx.message.server
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if owner in author.roles or manager in author.roles or admin in author.roles:
+        if target == None or args == None:
+            msg.add_field(name=error_img, value="Not all arguments were given.\nExample: `~idban 299761993382887425 Stealing chocolate.`.")
+        else:
+            try:
+                a = await client.get_user_info(target)
+                await client.http.ban(target, server.id, 0)
+                msg.add_field(name=":hammer_pick: ", value="<@{}> ID banned **{}**.\nReason:\n{}".format(author.id, a, args))
+                m = "```diff"
+                m += "\n- ID BAN -"
+                m += "\n+ Author: {} ### {}".format(author, author.id)
+                m += "\n+ Target: {} ### {}".format(a, a.id)
+                m += "\n+ Reason:"
+                m += "\n```"
+                m += "\n{}".format(args)
+                chnl = client.get_channel('453219479963303936')
+                await client.send_message(chnl, m)
+            except:
+                msg.add_field(name=error_img, value="There was an error while trying to ID ban that user.\nEither the user cannot be banned or the ID you specified doesn't exist.")
+    else:
+        msg.add_field(name=error_img, value="This command can only be used by Admins, Co-Owners and Owners.")
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
