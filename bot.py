@@ -461,13 +461,13 @@ async def urban(ctx, *, args = None):
 @client.command(pass_context=True)
 async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = None):
     author = ctx.message.author
-    x = discord.utils.get(ctx.message.server.roles, id=x_role)
-    owner = discord.utils.get(ctx.message.server.roles, id=owner_role)
-    admin = discord.utils.get(ctx.message.server.roles, id=admin_role)
-    manager = discord.utils.get(ctx.message.server.roles, id=manager_role)
-    mod = discord.utils.get(ctx.message.server.roles, id=mod_role)
-    helper = discord.utils.get(ctx.message.server.roles, id=helper_role)
-    punished = discord.utils.get(ctx.message.server.roles, id=punished_role)
+    member = discord.utils.get(ctx.message.server.roles, name ='Members')
+    punished = discord.utils.get(ctx.message.server.roles, name='Muted')
+    helper = discord.utils.get(ctx.message.server.roles, name='Helper')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Administrator')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
@@ -480,7 +480,7 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
                 msg.add_field(name=error_img, value="That user is already punished.")
                 await client.say(embed=msg)
             else:
-                if owner in user.roles or manager in user.roles or admin in user.roles or mod in user.roles or helper in user.roles or x in user.roles:
+                if owner in user.roles or manager in user.roles or admin in user.roles or mod in user.roles or helper in user.roles:
                     msg.add_field(name=error_img, value="Other staff cannot be punished.")
                     await client.say(embed=msg)
                 else:
