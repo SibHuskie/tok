@@ -20,6 +20,7 @@ manager_role = '465479196102230027'
 admin_role = '465479205963038731'
 mod_role = '465479218269257729'
 helper_role = '465675482654965762'
+x_role = '465678190208090112'
 punished_role = '465479862166224896'
 release_date = '9th of July, 2018'
 banner = 'https://gph.is/2NfJtGd'
@@ -456,9 +457,9 @@ async def urban(ctx, *, args = None):
 
 #                                                       MODERATOR COMMANDS
 
-# }punish <user> <time> [reason]
+# ~tempmute <user> <time> [reason]
 @client.command(pass_context=True)
-async def punish(ctx, user: discord.Member = None, time4 = None, *, args = None):
+async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = None):
     author = ctx.message.author
     x = discord.utils.get(ctx.message.server.roles, id=x_role)
     owner = discord.utils.get(ctx.message.server.roles, id=owner_role)
