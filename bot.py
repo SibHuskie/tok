@@ -473,7 +473,7 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
     msg.set_footer(text=footer_text)
     if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
         if user == None or time4 == None:
-            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~punish @Huskie 15 Spamming.`.\n`~punish @Tokyo 15`.")
+            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~tempmute @Huskie 15 Spamming.`.\n`~tempmute @Tokyo 15`.")
             await client.say(embed=msg)
         else:
             if punished in user.roles:
@@ -500,7 +500,7 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
                                 msg2.set_footer(text=footer_text)
                                 await client.add_roles(user, punished)
                                 if args == None:
-                                    msg.add_field(name=":no_entry_sign: ", value="<@{}> punished <@{}> for {} minute(s).\nNo reason given.".format(author.id, user.id, time4))
+                                    msg.add_field(name=":no_entry_sign: ", value="<@{}> temporarily muted <@{}> for {} minute(s).\nNo reason given.".format(author.id, user.id, time4))
                                     await client.say(embed=msg)
                                     m = "```diff"
                                     m += "\n- PUNISH -"
@@ -534,10 +534,10 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
                                         msg2.add_field(name=":no_entry_sign: ", value="<@{}> has been automatically pardoned.".format(user.id))
                                         await client.say(embed=msg2)
                             except:
-                                msg.add_field(name=error_img, value="There has been an error while trying to punish that user.")
+                                msg.add_field(name=error_img, value="There has been an error while trying to temporarily mute that user.")
                                 await client.say(embed=msg)
                     except:
-                        msg.add_field(name=error_img, value="The time has to be a number.\nExample: `~punish @Huskie 10` will mute Huskie for 10 minutes.")
+                        msg.add_field(name=error_img, value="The time has to be a number.\nExample: `~tempmute @Huskie 10` will mute Huskie for 10 minutes.")
                         await client.say(embed=msg)
     else:
         msg.add_field(name=error_img, value="This command can only be used by the staff.")
