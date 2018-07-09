@@ -35,6 +35,28 @@ async def on_ready():
     print("---------------")
     await client.change_presence(game=discord.Game(name='on Saviors™'))
     
+# EVENT - JOIN / LEAVE
+@client.async_event
+async def on_member_join(userName: discord.User):
+    m2 = "https://gph.is/2NfJtGd"
+    m2 += "\n**~~__= = = = = = = = = = = = = = = = = = =__~~**"
+    m2 += "\n:small_red_triangle_down: Welcome to **Saviors™**, <@{}>! We hope you enjoy your stay and have fun.".format(userName.id)
+    m2 += "\n:small_red_triangle:All the information is in the <#463180648719450112> channel, but feel free to ask the staff about anything you want to know."
+    m2 += "\n**~~__= = = = = = = = = = = = = = = = = = =__~~**"
+    m2 += "\n:small_orange_diamond: If you are here to partner with the server, please DM a Partnership Manager, if there are none online DM a helper / moderator instead of the managers and owners."
+    m2 += "\n:small_blue_diamond: Thanks for joining!"
+    server = client.get_server('463178197228584981')
+    await client.send_message(client.get_channel("463178197228584983"), "Welcome to **Saviors™**, <@{}>! We hope you enjoy your stay. We now have have {} members.".format(userName.id, len(server.members)))
+    try:
+        await client.send_message(userName, "{}".format(m2))
+    except:
+        print("")
+        
+@client.async_event
+async def on_member_remove(userName: discord.User):
+    server = client.get_server('463178197228584981')
+    await client.send_message(client.get_channel("463178197228584983"), "`{}` left the server! Now we have {} members.".format(userName, len(server.members)))
+    
 #                                                           EMOTES
 
 licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
