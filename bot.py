@@ -578,7 +578,7 @@ async def kick(ctx, user: discord.Member = None, *, args = None):
         if user == None:
             msg.add_field(name=error_img, value="No target given.\nExamples:\n`~kick @Tokyo Eating my cookies.`.\n`~kick @Huskie`.")
         else:
-            if owner in user.roles or manager in user.roles or admin in user.roles or mod in user.roles or helper in user.roles or x in user.roles:
+            if owner in user.roles or manager in user.roles or admin in user.roles or mod in user.roles or helper in user.roles:
                 msg.add_field(name=error_img, value="You cannot kick other staff.\nStaff can only be kicked manualy.")
             else:
                 chnl = client.get_channel('465676398036779008')
