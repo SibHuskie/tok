@@ -560,6 +560,51 @@ async def bc(ctx):
         msg.add_field(name=error_img, value="This command can only be used by the staff!")
     await client.say(embed=msg)
     
+# ~purge <number>
+@client.command(pass_context=True)
+async def purge(ctx, number = None):
+    author = ctx.message.author
+    member = discord.utils.get(ctx.message.server.roles, name ='Members')
+    punished = discord.utils.get(ctx.message.server.roles, name='Muted')
+    helper = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
+        if number == None:
+            msg.add_field(name=error_img, value="Please specify the number of messages you want to delete.")
+        else:
+            try:
+                testnumber = int(number)
+                number2 = testnumber * 0
+                await asyncio.sleep(float(number2))
+                try:
+                    deleted = await client.purge_from(ctx.message.channel, limit=testnumber)
+                    if len(deleted) < testnumber:
+                        msg.add_field(name=":wastebasket: ", value="<@{}> tried to delete {} messages.\n{} messages were deleted.".format(author.id, number, len(deleted)))
+                    else:
+                        msg.add_field(name=":wastebasket: ", value="<@{}> deleted {} messages.".format(author.id, len(deleted)))
+                    chnl = client.get_channel('465676398036779008')
+                    m = "```diff"
+                    m += "\n- PURGE -"
+                    m += "\n+ Author: {} ### {}".format(author, author.id)
+                    m += "\n+ In: {} ### {}".format(ctx.message.channel.name, ctx.message.channel.id)
+                    m += "\n+ Number: {}".format(number)
+                    m += "\n+ Deleted: {}".format(len(deleted))
+                    m += "\n```"
+                    await client.send_message(chnl, m)
+                except:
+                    msg.add_field(name=error_img, value="There has been an error while trying to purge messages.")
+            except:
+                msg.add_field(name=error_img, value="The number has to be a number. Come on, guys, this is simple stuff.")
+    else:
+        msg.add_field(name=error_img, value="This command can only be used by the staff.")
+    await client.say(embed=msg)
+    
 # ~kick <user> [reason]
 @client.command(pass_context=True)
 async def kick(ctx, user: discord.Member = None, *, args = None):
@@ -589,7 +634,7 @@ async def kick(ctx, user: discord.Member = None, *, args = None):
                 if args == None:
                     m += "\n+ Reason: [No Reason Given]"
                     m += "\n```"
-                    msg.add_field(name=":boot: Kicking Boot", value="<@{}> kicked **{}**!\nNo reason given.".format(author.id, user))
+                    msg.add_field(name="**User Kicked**", value="<@{}> kicked **{}**!\nNo reason given.".format(author.id, user))
                     await client.kick(user)
                     await client.send_message(chnl, m)
                 else:
@@ -599,7 +644,7 @@ async def kick(ctx, user: discord.Member = None, *, args = None):
                         m += "\n+ Reason:"
                         m += "\n```"
                         m += "\n{}".format(args)
-                        msg.add_field(name=":boot: Kicking Boot", value="<@{}> kicked **{}**!\nReason:\n{}".format(author.id, user, args))
+                        msg.add_field(name="**User Kicked**", value="<@{}> kicked **{}**!\nReason:\n{}".format(author.id, user, args))
                         await client.kick(user)
                         await client.send_message(chnl, m)
     else:
