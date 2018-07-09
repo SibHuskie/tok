@@ -503,4 +503,38 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
+        
+# }pardon <user>
+@client.command(pass_context=True)
+async def pardon(ctx, user: discord.Member = None):
+    author = ctx.message.author
+    member = discord.utils.get(ctx.message.server.roles, name ='Members')
+    punished = discord.utils.get(ctx.message.server.roles, name='Muted')
+    helper = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
+        if user == None:
+            msg.add_field(name=error_img, value="Please mention someone you want to unmute.\nExample: `~unmute @Huskie`.")
+        else:
+            if punished in user.roles:
+                await client.remove_roles(user, punished)
+                msg.add_field(name=":o: ", value="<@{}> pardoned <@{}>.".format(author.id, user.id))
+                chnl = client.get_channel('465676398036779008')
+                m = "```diff"
+                m += "\n- PARDON -"
+                m += "\n+ Author: {} ### {}".format(author, author.id)
+                m += "\n+ Target: {} ### {}".format(user, user.id)
+                m += "\n```"
+                await client.send_message(chnl, m)
+            else:
+                msg.add_field(name=error_img, value="That user isn't muted.")
+    else:
+        msg.add_field(name=error_img, value="This command can only be used by the staff.")
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
