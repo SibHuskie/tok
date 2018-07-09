@@ -530,4 +530,33 @@ async def unmute(ctx, user: discord.Member = None):
     else:
         msg.add_field(name=error_img, value="This command can only be used by the staff.")
     await client.say(embed=msg)
+    
+# ~bc
+@client.command(pass_context=True)
+async def bc(ctx):
+    author = ctx.message.author
+    chnl = ctx.message.channel
+    msg = discord.Embed(colour=0x84b5ed, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    helper = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    a = []
+    if helper in author.roles or mod in author.roles or admin in author.roles or manager in author.roles or owner in author.roles:
+        async for i in client.logs_from(chnl):
+            if len(a) < 50:
+                if i.author.bot:
+                    await client.delete_message(i)
+                    a.append("+1")
+                else:
+                    print("")
+            else:
+                break
+        msg.add_field(name="**Bot Clear**", value="<@{}> removed the latest messages sent by bots.".format(author.id))
+    else:
+        msg.add_field(name=error_img, value="This command can only be used by the staff!")
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
