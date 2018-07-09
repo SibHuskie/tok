@@ -473,7 +473,7 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
     msg.set_footer(text=footer_text)
     if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
         if user == None or time4 == None:
-            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~punish @Huskie 15 Spamming.`.\n`}punish @Nilzzu 15`.")
+            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~punish @Huskie 15 Spamming.`.\n`~punish @Tokyo 15`.")
             await client.say(embed=msg)
         else:
             if punished in user.roles:
@@ -537,7 +537,7 @@ async def tempmute(ctx, user: discord.Member = None, time4 = None, *, args = Non
                                 msg.add_field(name=error_img, value="There has been an error while trying to punish that user.")
                                 await client.say(embed=msg)
                     except:
-                        msg.add_field(name=error_img, value="The time has to be a number.\nExample: `~punish @Huskie 10` will mute Sarah for 10 minutes.")
+                        msg.add_field(name=error_img, value="The time has to be a number.\nExample: `~punish @Huskie 10` will mute Huskie for 10 minutes.")
                         await client.say(embed=msg)
     else:
         msg.add_field(name=error_img, value="This command can only be used by the staff.")
