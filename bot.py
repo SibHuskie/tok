@@ -470,12 +470,12 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
     manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
     owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
     author = ctx.message.author
-    msg = discord.Embed(colour=0x871485, description= "")
+    msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
         if userName == None or time == None:
-            msg.add_field(name=":warning: ", value="`~tempmute <user> <time> [reason]`")
+            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~tempmute @Huskie 15 Spamming.`.\n`~tempmute @Huskie 15`.")
             await client.say(embed=msg)
         elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
             msg.add_field(name=":warning: ", value="`You can't punish other staff!`")
