@@ -496,7 +496,7 @@ async def mute(ctx, user: discord.Member = None, time4 = None, *, args = None):
     msg.set_footer(text=footer_text)
     if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
         if user == None or time4 == None:
-            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`v!punish @Huskie 15 Spamming.`.\n`v!punish @Huskie 15`.")
+            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~mute @Huskie 15 Spamming.`.\n`~mute @Huskie 15`.")
             await client.say(embed=msg)
         else:
             if punished in user.roles:
