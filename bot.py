@@ -479,49 +479,91 @@ async def urban(ctx, *, args = None):
 
 #                                                       MODERATOR COMMANDS
 
-# ~tempmute <user> <time> [reason]
+# v!punish <user> <time> [reason]
 @client.command(pass_context=True)
-async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
-    member_role = discord.utils.get(ctx.message.server.roles, name ='Members')
-    punished_role = discord.utils.get(ctx.message.server.roles, name='Muted')
-    helper_role = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
-    mod_role = discord.utils.get(ctx.message.server.roles, name='Moderator')
-    admin_role = discord.utils.get(ctx.message.server.roles, name='Admin')
-    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
-    owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
+async def mute(ctx, user: discord.Member = None, time4 = None, *, args = None):
     author = ctx.message.author
+    member = discord.utils.get(ctx.message.server.roles, name ='Members')
+    punished = discord.utils.get(ctx.message.server.roles, name='Muted')
+    helper = discord.utils.get(ctx.message.server.roles, name='Trial Moderator')
+    mod = discord.utils.get(ctx.message.server.roles, name='Moderator')
+    admin = discord.utils.get(ctx.message.server.roles, name='Admin')
+    manager = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner = discord.utils.get(ctx.message.server.roles, name='Owner')
+    x_role = discord.utils.get(ctx.message.server.roles, name='Tok')
     msg = discord.Embed(colour=0x84b5ed, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
-    if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
-        if userName == None or time == None:
-            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`~tempmute @Huskie 15 Spamming.`.\n`~tempmute @Huskie 15`.")
-            await client.say(embed=msg)
-        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
-            msg.add_field(name=":warning: ", value="`You can't punish other staff!`")
-            await client.say(embed=msg)
-        elif punished_role in userName.roles:
-            msg.add_field(name=":warning: ", value="`That user is already muted!`")
+    if owner in author.roles or admin in author.roles or manager in author.roles or mod in author.roles or helper in author.roles:
+        if user == None or time4 == None:
+            msg.add_field(name=error_img, value="Not all required arguments were given.\nExamples:\n`v!punish @Huskie 15 Spamming.`.\n`v!punish @Huskie 15`.")
             await client.say(embed=msg)
         else:
-            time2 = time * 60
-            if args == None:
-                await client.add_roles(userName, punished_role)
-                await client.remove_roles(userName, member_role)
-                msg.add_field(name=":speak_no_evil: ", value="`{} has been temporarily muted by {}! for {} minute(s)!`\n`Reason: ?`".format(userName.display_name, author.display_name, time))
+            if punished in user.roles:
+                msg.add_field(name=error_img, value="That user is already punished.")
                 await client.say(embed=msg)
-                await asyncio.sleep(float(time2))
-                await client.remove_roles(userName, punished_role)
-                await client.say("```diff\n- Removed {}'s mute! ({} minute(s) are up.)\n```".format(userName.display_name, time))
             else:
-                await client.add_roles(userName, punished_role)
-                msg.add_field(name=":speak_no_evil: ", value="`{} has been muted by {} for {} minute(s)!`\n`Reason: {}`".format(userName.display_name, author.display_name, time, args))
-                await client.say(embed=msg)
-                await asyncio.sleep(float(time2))
-                await client.remove_roles(userName, punished_role)
-                await client.say("```diff\n- Removed {}'s mute! ({} minute(s) are up.)\n```".format(userName.display_name, time))
+                if owner in user.roles or manager in user.roles or admin in user.roles or mod in user.roles or helper in user.roles or x in user.roles:
+                    msg.add_field(name=error_img, value="Other staff cannot be punished.")
+                    await client.say(embed=msg)
+                else:
+                    try:
+                        time = int(time4)
+                        if time > 600:
+                            msg.add_field(name=error_img, value="The time cannot be longer than 600 minutes (10 hours).")
+                            await client.say(embed=msg)
+                        else:
+                            testtime = time * 0
+                            try:
+                                await asyncio.sleep(float(testtime))
+                                time2 = time * 60
+                                chnl = client.get_channel('465676398036779008')
+                                msg2 = discord.Embed(colour=0x84b5ed, description= "")
+                                msg2.title = ""
+                                msg2.set_footer(text=footer_text)
+                                await client.add_roles(user, punished)
+                                if args == None:
+                                    msg.add_field(name=":no_entry_sign: ", value="<@{}> punished <@{}> for {} minute(s).\nNo reason given.".format(author.id, user.id, time4))
+                                    await client.say(embed=msg)
+                                    m = "```diff"
+                                    m += "\n- PUNISH -"
+                                    m += "\n+ Author: {} ### {}".format(author, author.id)
+                                    m += "\n+ Target: {} ### {}".format(user, user.id)
+                                    m += "\n+ Time: {}".format(time4)
+                                    m += "\n+ Reason: [No Reason Given]"
+                                    m += "\n```"
+                                    await client.send_message(chnl, m)
+                                    await asyncio.sleep(float(time2))
+                                    await client.remove_roles(user, punished)
+                                    msg2.add_field(name=":no_entry_sign: ", value="<@{}> has been automatically pardoned.".format(user.id))
+                                    await client.say(embed=msg2)
+                                else:
+                                    if len(str(args)) > 1000:
+                                        msg.add_field(name=error_img, value="The reason cannot be longer than 1000 characters.")
+                                    else:
+                                        msg.add_field(name=":no_entry_sign: ", value="<@{}> punished <@{}> for {} minute(s).\nReason:\n{}".format(author.id, user.id, time4, args))
+                                        await client.say(embed=msg)
+                                        m = "```diff"
+                                        m += "\n- PUNISH -"
+                                        m += "\n+ Author: {} ### {}".format(author, author.id)
+                                        m += "\n+ Target: {} ### {}".format(user, user.id)
+                                        m += "\n+ Time: {}".format(time4)
+                                        m += "\n+ Reason:"
+                                        m += "\n```"
+                                        m += "\n{}".format(args)
+                                        await client.send_message(chnl, m)
+                                        await asyncio.sleep(float(time2))
+                                        await client.remove_roles(user, punished)
+                                        msg2.add_field(name=":no_entry_sign: ", value="<@{}> has been automatically pardoned.".format(user.id))
+                                        await client.say(embed=msg2)
+                            except:
+                                msg.add_field(name=error_img, value="There has been an error while trying to punish that user.")
+                                await client.say(embed=msg)
+                    except:
+                        msg.add_field(name=error_img, value="The time has to be a number.\nExample: `}punish @Sarah 10` will mute Sarah for 10 minutes.")
+                        await client.say(embed=msg)
     else:
-        msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
+        msg.add_field(name=error_img, value="This command can only be used by the staff.")
         await client.say(embed=msg)
         
 # ~unmute <user>
