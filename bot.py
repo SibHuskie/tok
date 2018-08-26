@@ -67,37 +67,20 @@ licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
              "https://i.imgur.com/LptJIi1.gif",
              "https://i.imgur.com/THGgRJz.gif"]
 
-huglinks = ["https://i.imgur.com/yE2RnXK.gif",
-            "https://i.imgur.com/R9sYxk8.gif",
-            "https://i.imgur.com/iLBEoKv.gif",
-            "https://i.imgur.com/cc554e8.gif",
-            "https://i.imgur.com/1dqkjHe.gif",
-            "https://i.imgur.com/Ph8GTqg.gif",
-            "https://i.imgur.com/G6EnOxd.gif",
-            "https://i.imgur.com/ZxwHn5Y.gif",
-            "https://i.imgur.com/movPIsP.gif",
-            "https://i.imgur.com/tKlfSgo.gif",
-            "https://i.imgur.com/ICg9nCr.gif",
-            "https://i.imgur.com/yC95DC2.gif",
-            "https://i.imgur.com/hRYXNKX.gif",
-            "https://i.imgur.com/br3bGQc.gif",
-            "https://i.imgur.com/IcNGAQD.gif"]
+huglinks = ["https://cdn.discordapp.com/attachments/435564883665223701/466450369120174100/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450393380159508/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450416125870080/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450437504237578/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450454839296000/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450463118721024/image.gif",
+            "https://cdn.discordapp.com/attachments/435564883665223701/466450470953811968/image.gif"]
 
-kisslinks = ["https://i.imgur.com/0Ri9sfq.gif",
-             "https://i.imgur.com/EMdpmXW.gif",
-             "https://i.imgur.com/Y9iLoiv.gif",
-             "https://i.imgur.com/ZlqZy8S.gif",
-             "https://i.imgur.com/ySav1IQ.gif",
-             "https://i.imgur.com/ZGfrn2d.gif",
-             "https://i.imgur.com/glwWeUl.gif",
-             "https://i.imgur.com/j5hDl7V.gif",
-             "https://i.imgur.com/w7mVYty.gif",
-             "https://i.imgur.com/FJ5bckO.gif",
-             "https://i.imgur.com/KqVmVU7.gif",
-             "https://i.imgur.com/EM1C9a6.gif",
-             "https://i.imgur.com/TACVpH9.gif",
-             "https://i.imgur.com/opiHLtc.gif",
-             "https://i.imgur.com/LylJAea.gif"]
+kisslinks = ["https://78.media.tumblr.com/dc44527f9ec083bbae456cd871cdebad/tumblr_inline_mho0z45p3Q1qz4rgp.gif",
+             "https://78.media.tumblr.com/2e8af0403cd1c3a3ecd37873fbd61560/tumblr_inline_p9djtxJOSa1rv2xg7_500.gif",
+             "http://68.media.tumblr.com/9832c73572d89003d718cc280d113c15/tumblr_os9lktBRhx1v8hcteo1_500.gif",
+             "https://78.media.tumblr.com/02e529058617126d653321744fe30433/tumblr_mrc1bbY29l1r08xlao1_400.gif",
+             "https://k46.kn3.net/taringa/1/7/7/2/6/6/84/getagrip/52E.gif",
+             "https://78.media.tumblr.com/tumblr_mc0jysVgv31rik3cio2_250.gif"]
 
 crylinks = ["https://media1.giphy.com/media/ROF8OQvDmxytW/giphy-downsized.gif",
             "https://media1.tenor.com/images/06ae6bbe852471939cf61a81e5a9eb23/tenor.gif?itemid=5370823",
@@ -118,12 +101,13 @@ spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
               "https://i.imgur.com/UShywVv.gif",
               "https://i.imgur.com/RE3mnrA.gif"]
 
-cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
-               "https://i.imgur.com/i3Eqqgz.gif",
-               "https://i.imgur.com/GpFk6fE.gif",
-               "https://i.imgur.com/mc3Z7wf.gif",
-               "https://i.imgur.com/N5JYB5r.gif",
-               "https://i.imgur.com/PGp8JYq.gif"]
+cuddlelinks = ["https://cdn.discordapp.com/attachments/435564883665223701/466454172703916032/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454165883715584/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454158795603968/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454134644670464/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454119125614603/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454101903933440/image.gif",
+               "https://cdn.discordapp.com/attachments/435564883665223701/466454082488500224/image.gif"]
 
 # ~lick <user>
 @client.command(pass_context=True)
